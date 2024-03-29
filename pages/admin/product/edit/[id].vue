@@ -2,7 +2,13 @@
     <!-- <Adminproduct.value.resultBreadCrumb /> -->
     <div class="flex flex-col gap-y-5 p-5 rounded-lg bg-white shadow-xl w-full mx-auto">
         <div class="flex flex-col gap-y-5">
-            <div class="text-sm font-bold text-gray-700 uppercase">Sửa sản phẩm: {{ product.result.name }}</div>
+            <div class="flex justify-between">
+                <div class="text-sm font-bold text-gray-700">Chỉnh sửa sản phẩm: <span class="text-green-400">{{ product.result.name }}</span></div>
+                <NuxtLink :to="`/detail_product/${idProd}`" class="text-sm font-bold text-gray-700 flex gap-2 italic hover:text-amber-600">
+                    Link sản phẩm
+                    <IconLink />
+                </NuxtLink>
+            </div>
 
             <div class="flex flex-col gap-y-3">
                 <table class="table-auto shadow-sm">
@@ -42,10 +48,23 @@
                             </td>
                         </tr>
                         <tr class="text-gray-600">
-                            <td class="border p-3 w-1/3">Mô tả</td>
-                            <td class="border p-3 w-2/3">
-                                <textarea v-model="product.result.description" placeholder="nhập mô tả cho sản phẩm"
-                                    class="w-full px-2 py-2.5 text-gray-500 border-gray-300 rounded-lg border outline-none  bg-admin placeholder:lowercase focus:border-red-500"></textarea>
+                            <td class="border p-3 w-3/12">
+                                <div class="flex justify-between">
+                                    <div class="w-2/3">Mô tả</div>
+                                    <button class="1/3 text-green-500 hover:text-green-700" v-if="product.result.name.length > 0"
+                                        :title="`Dùng AI tạo mô tả cho sản phẩm ${product.result.name}`" @click="genAI">
+                                        <IconComputer />
+                                    </button>
+                                </div>
+                            </td>
+                            <td class="border p-3 w-9/12">
+                                <div class="flex flex-col gap-2">
+                                    <div v-if="loadingGenAI" class='h-0.5 bg-red-100 overflow-hidden'>
+                                        <div class='progress h-full bg-green-500 left-right'></div>
+                                    </div>
+                                    <textarea v-model="product.result.description" :disabled="loadingGenAI" :placeholder="loadingGenAI ? 'Đang tạo content tự động' : 'nhập mô tả cho sản phẩm'"
+                                    class="w-full px-2 py-5 text-gray-500 border-gray-300 rounded-lg border outline-none  bg-admin placeholder:lowercase focus:border-red-500"></textarea>
+                                </div>
                             </td>
                         </tr>
                         <tr class="text-gray-600">
@@ -204,6 +223,7 @@ const { $objstring } = useNuxtApp();
 
 const hiddenAddProdDetailBox = ref(true);
 const hiddenAddProdPropBox = ref(true);
+const loadingGenAI = ref(false);
 
 const { data: product } = await useFetch('http://localhost:3000/api/products/' + idProd);
 
@@ -326,4 +346,44 @@ const editProduct = async () => {
     })
 }
 
+const genAI = async () => {
+    loadingGenAI.value = true;
+
+    const { data, pending, error } = await useFetch('http://localhost:3000/api/gemini/prompt', {
+        method: 'POST',
+        body: $objstring({
+            prompt: `viết mô tả ngắn gọn khoảng 400 ký tự cho sản phẩm: ${product.value.result.name}`
+        })
+    })
+
+    if (error.value) {
+        alert('Lỗi truy vấn AI:' + error.value);
+        loadingGenAI.value = false;
+        return;
+    }
+
+    product.value.result.description = data.value;
+    loadingGenAI.value = false;
+}
+
 </script>
+<style scoped>
+.progress {
+  animation: progress 1s infinite linear;
+}
+
+.left-right {
+    transform-origin: 0% 50%;
+}
+    @keyframes progress {
+    0% {
+        transform:  translateX(0) scaleX(0);
+    }
+    40% {
+        transform:  translateX(0) scaleX(0.4);
+    }
+    100% {
+        transform:  translateX(100%) scaleX(0.5);
+    }
+}
+</style>

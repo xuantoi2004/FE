@@ -1,5 +1,6 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
+  runtimeConfig: {},
   css: ['~/assets/css/main.css'],
   postcss: {
     plugins: {
@@ -11,7 +12,7 @@ export default defineNuxtConfig({
   modules: [
     '@pinia/nuxt',
     '@pinia-plugin-persistedstate/nuxt',
-    '@nuxt/image'
+    '@nuxt/image',
   ],
   image: {
     presets: {
@@ -22,5 +23,5 @@ export default defineNuxtConfig({
         },
       },
     },
-  }
+  },
 })

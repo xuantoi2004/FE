@@ -17,7 +17,7 @@
                     <ItemCategoryIndex v-for="category in categories.result" :id="category.id" :category="category" />
                 </div>
                 <NuxtLink :to="'/good_cate/'+goodCate.id"
-                    class="text-center text-red-500 border-2 border-red-500 px-2 py-1 rounded-lg w-1/6 mx-auto my-4 font-semibold">
+                    class="px-5 py-2 w-2/12 rounded text-center mx-auto mt-4 hover:text-amber-400 hover:bg-gray-800 font-semibold mb-5 bg-amber-400 text-gray-800">
                     Xem Thêm
                 </NuxtLink>
             </div>

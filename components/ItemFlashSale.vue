@@ -16,7 +16,7 @@
         {{ product.price.toLocaleString() }} đ
     </div>
     <div class="line-through">
-        {{ (product.price + product.price*product.discount).toLocaleString() }} đ
+        {{ (product.price * ((product.discount+5) / 100) + product.price).toLocaleString() }} đ
     </div>
     <div class="text-center">
         <div class="w-full h-4 bg-gray-200 rounded relative">

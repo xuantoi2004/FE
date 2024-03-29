@@ -114,9 +114,9 @@ const items = ref([])
 items.value = products.value.result.map((item) => {
     return {
         id: item.id,
-        name: item.name,
+        name: `<a href="/detail_product/${item.id}" class="capitalize">${item.name.toLowerCase()}</a>`,
         picture: `<img src='${item.picture}' class="w-1/4 mx-auto"/>`,
-        description: item.description,
+        description: item.description.substring(0,100) + '...',
         qty: item.qty,
         price: item.price.toLocaleString() + ' đ',
         category_name: item.category.categoryName,

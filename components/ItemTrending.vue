@@ -20,7 +20,7 @@
             <!-- <div class="bg-gray-400 text-white rounded-lg px-3">Tập 1</div> -->
         </div>
         <div class="line-through">
-            {{ (product.price + product.price * product.discount).toLocaleString() }} đ
+            {{ (product.price * (product.discount / 100) + product.price).toLocaleString() }} đ
         </div>
         <div class="flex">
             <IconStar class="text-orange-500 w-4" />

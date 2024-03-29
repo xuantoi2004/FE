@@ -10,7 +10,7 @@
                 <ItemTrending :product="product" />
             </div>
         </div>
-        <div class="px-5 py-2 bg-gray-800 w-2/12 rounded-full text-center mx-auto mt-4 text-amber-400 font-semibold mb-5 hover:bg-amber-400 hover:text-gray-800">
+        <div class="px-5 py-2 w-2/12 rounded text-center mx-auto mt-4 hover:text-amber-400 hover:bg-gray-800 font-semibold mb-5 bg-amber-400 text-gray-800">
             Xem thêm</div>
     </div>
 </template>
