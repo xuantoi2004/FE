@@ -16,7 +16,6 @@
     </form>
   </template>
 <script setup>
-  import { getAnswer } from "../../repositories/chat";
 
   const messages = ref([]);
   const answer = ref(null);

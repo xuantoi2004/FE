@@ -14,7 +14,6 @@
                 <div class="border-b py-3 text-sm cursor-pointer">Đơn hàng của tôi</div>
                 <div class="border-b py-3 text-sm cursor-pointer">Voucher của tôi</div>
                 <div class="border-b py-3 text-sm cursor-pointer">Thông báo</div>
-                <NuxtLink class="border-b py-3 text-sm cursor-pointer" to="/gpt/chat">Open AI</NuxtLink>
                 <div class="border-b py-3 text-sm cursor-pointer" @click="logout">Đăng xuất</div>
             </div>
         </div>
