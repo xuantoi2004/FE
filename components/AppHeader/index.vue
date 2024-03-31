@@ -25,9 +25,9 @@
         </div>
       </div>
       <div class="rounded-lg border-gray-400 border ps-5 pe-1 flex items-center w-3/6 mx-5">
-        <input type="text" placeholder="Tìm kiếm sản phẩm mong muốn.."
+        <input type="text" placeholder="Tìm kiếm sản phẩm mong muốn.." v-model="searchName"
           class="w-full focus:border-transparent focus:outline-none" autocomplete="false">
-        <button class="bg-gray-800 text-amber-400 rounded-lg ms-auto px-5 py-1 hover:bg-gray-500">
+        <button @click="searchProduct" class="bg-gray-800 text-amber-400 rounded-lg ms-auto px-5 py-1 hover:bg-gray-500">
           <IconGlass />
         </button>
       </div>
@@ -201,6 +201,7 @@ import { ref, computed } from 'vue';
 import { useUserStore } from '~/store/user';
 
 const { $objstring } = useNuxtApp();
+const router = useRouter();
 
 const isHovering = ref(false);
 const isHoveringAccount = ref(true);
@@ -209,6 +210,7 @@ const isDisplayLoginBox = ref(false);
 const isOnLogin = ref(true);
 const passType = ref('password');
 const userStore = useUserStore()
+const searchName = ref('');
 
 const payload = ref({
   phone: '',
@@ -235,6 +237,15 @@ const onTabStyle = computed(() => {
     return {}
   }
 })
+
+const searchProduct = async () => {
+  await navigateTo({
+    path: '/search',
+    query: {
+      name: searchName.value
+    }
+  })
+}
 
 const displayLoginBox = () => {
   isDisplayLoginBox.value = true;

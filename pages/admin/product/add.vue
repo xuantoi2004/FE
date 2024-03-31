@@ -155,6 +155,7 @@ definePageMeta({
 })
 
 const { $objstring } = useNuxtApp();
+const config = useRuntimeConfig();
 
 const product = ref({
     name: '',
@@ -194,13 +195,14 @@ const onFileChange = async (e) => {
     const formData = new FormData();
     formData.append('image', file);
 
-    await useFetch('http://localhost:3000/api/products/upload', {
+    await useFetch('/products/upload', {
+        baseURL: config.public.apiBase,
         method: 'POST',
         body: formData,
         onResponse: ({ response }) => {
             if (response.ok) {
                 const imageURL = response._data.result;
-                product.value.picture = 'http://localhost:3000/api/products/image/'+imageURL;
+                product.value.picture = config.public.apiBase+'/products/image/'+imageURL;
                 alert('Upload ảnh thành công');
             } else {
                 alert('Upload ảnh thất bại')
@@ -268,10 +270,5 @@ const genAI = async () => {
     100% {
         transform: translateX(100%) scaleX(0.5);
     }
-}
-
-canvas {
-  max-width: 200px;
-  max-height: 200px;
 }
 </style>

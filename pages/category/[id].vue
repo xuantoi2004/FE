@@ -34,7 +34,7 @@
                 </ul>
             </div>
 
-            <div class="border-b border-gray-300 flex flex-col pb-2 mt-2">
+            <!-- <div class="border-b border-gray-300 flex flex-col pb-2 mt-2">
                 <div class="font-bold text-sm mb-2">HÌNH THỨC</div>
                 <ul class="flex flex-col p-2">
                     <li class="flex justify-between">
@@ -64,7 +64,7 @@
                         <div>Tiếng Anh</div>
                     </li>
                 </ul>
-            </div>
+            </div> -->
 
         </div>
         <div class="w-10/12 bg-white flex flex-col ml-2 p-4 shadow-sm">
