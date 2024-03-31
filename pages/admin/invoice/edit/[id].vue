@@ -107,12 +107,17 @@ definePageMeta({
 })
 
 const {$objstring} = useNuxtApp();
+const config = useRuntimeConfig();
 
 const idInvoice = useRoute().params.id;
 
 const userStore = useUserStore();
-const { data: user } = await useFetch('http://localhost:3000/api/customers/' + userStore.user.id);
-const { data: invoice } = await useFetch('http://localhost:3000/api/invoice/' + idInvoice);
+const { data: user } = await useFetch('/customers/' + userStore.user.id,{
+    baseURL: config.public.apiBase
+});
+const { data: invoice } = await useFetch('/invoice/' + idInvoice,{
+    baseURL: config.public.apiBase
+});
 
 const formatDate = (inputDateString) => {
     const date = new Date(inputDateString);
@@ -124,7 +129,8 @@ const formatDate = (inputDateString) => {
 }
 
 const editInvoice = async () => {
-    await useFetch('http://localhost:3000/api/invoice/'+idInvoice, {
+    await useFetch('/invoice/'+idInvoice, {
+        baseURL: config.public.apiBase,
         method: 'PATCH',
         body: $objstring(invoice.value.result),
         onResponse: ({response}) => {

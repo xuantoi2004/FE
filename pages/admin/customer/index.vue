@@ -80,6 +80,8 @@ definePageMeta({
     layout: 'admin', middleware: 'auth-admin',
 })
 
+const config = useRuntimeConfig();
+
 const headers = ref([
     { text: "Ảnh đại diện", value: "avatar" },
     { text: "Họ và tên", value: "full_name" },
@@ -90,7 +92,9 @@ const headers = ref([
     { text: "Trạng thái", value: "status", sortable: true },
 ])
 
-const {data: customers} = await useFetch('http://localhost:3000/api/customers');
+const {data: customers} = await useFetch('/customers', {
+    baseURL: config.public.apiBase
+});
 
 const items = ref([]);
 items.value = customers.value.result.map(item => {

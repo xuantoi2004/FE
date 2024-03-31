@@ -79,7 +79,7 @@ import { ref } from "vue";
 definePageMeta({
     layout: 'admin', middleware: 'auth-admin',
 })
-
+const config = useRuntimeConfig();
 const wip = () => {
     alert('tính năng đang phát triển');
 }
@@ -95,7 +95,9 @@ const headers = ref([
     { text: "Trạng thái", value: "status", sortable: true },
 ])
 
-const {data: invoices} = await useFetch('http://localhost:3000/api/invoice');
+const {data: invoices} = await useFetch('/invoice',{
+    baseURL: config.public.apiBase
+});
 
 const items = ref([]);
 items.value = invoices.value.result.map(item => {

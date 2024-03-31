@@ -89,16 +89,21 @@ import { ref } from "vue";
 definePageMeta({
     layout: 'admin', middleware: 'auth-admin',
 })
-
-const { data: products } = await useFetch('http://localhost:3000/api/products', {
+const config = useRuntimeConfig();
+const { data: products } = await useFetch('/products', {
+    baseURL: config.public.apiBase,
     query: {
         sort: 'DESC'
     }
 });
 
-const { data: categories } = await useFetch('http://localhost:3000/api/category');
+const { data: categories } = await useFetch('/category',{
+    baseURL: config.public.apiBase
+});
 
-const {data: suppliers} = await useFetch('http://localhost:3000/api/suppliers');
+const {data: suppliers} = await useFetch('/suppliers',{
+    baseURL: config.public.apiBase
+});
 
 const headers = ref([
     { text: "Tên sản phẩm", value: "name" },

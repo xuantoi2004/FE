@@ -97,6 +97,7 @@ import { ref } from "vue";
 definePageMeta({
     layout: 'admin', middleware: 'auth-admin',
 })
+const config = useRuntimeConfig();
 
 const headers = ref([
     { text: "Tên", value: "name" },
@@ -116,7 +117,9 @@ const changeSelect = (itemId, selectedValue) => {
 };
 
 
-const { data } = await useFetch('http://localhost:3000/api/suppliers');
+const { data } = await useFetch('/suppliers',{
+    baseURL: config.public.apiBase
+});
 let items = ref([]);
 items.value = data.value.result.map((item) => {
     return {
@@ -134,7 +137,8 @@ items.value = data.value.result.map((item) => {
 });
 
 const removeItem = async (itemId) => {
-    await useFetch(`http://localhost:3000/api/suppliers/${itemId}`, {
+    await useFetch(`/suppliers/${itemId}`, {
+        baseURL: config.public.apiBase,
         method: 'DELETE',
         onResponse(response) {
             if(response.ok) {

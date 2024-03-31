@@ -70,9 +70,11 @@ definePageMeta({
 })
 
 import { useUserStore } from '~/store/user';
+const config = useRuntimeConfig();
 
 const userStore = useUserStore();
-const {data: invoices} = await useFetch('http://localhost:3000/api/invoice', {
+const {data: invoices} = await useFetch('/invoice', {
+    baseURL: config.public.apiBase,
     method: 'GET',
     query: {
         customerId: userStore.user.id,

@@ -16,17 +16,20 @@ definePageMeta({
 
 const route = useRoute();
 const idSupplier = route.params.id;
+const config = useRuntimeConfig();
 
 const goBack = () => {
     useRouter().back();
 }
 
-const {data: supplier} = await useFetch('http://localhost:3000/api/suppliers/'+idSupplier, {
+const {data: supplier} = await useFetch('/suppliers/'+idSupplier, {
+    baseURL: config.public.apiBase,
     method: 'GET'
 })
 
 const removeSupplier = async () => {
-    await useFetch('http://localhost:3000/api/suppliers/'+idSupplier, {
+    await useFetch('/suppliers/'+idSupplier, {
+        baseURL: config.public.apiBase,
         method: 'DELETE',
         onResponse({response}) {
             if(response.ok) {

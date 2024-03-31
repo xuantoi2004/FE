@@ -53,7 +53,7 @@
                                     <div class="w-2/3">Mô tả</div>
                                     <button class="1/3 text-green-500 hover:text-green-700" v-if="product.result.name.length > 0"
                                         :title="`Dùng AI tạo mô tả cho sản phẩm ${product.result.name}`" @click="genAI">
-                                        <IconComputer />
+                                        <IconChip/>
                                     </button>
                                 </div>
                             </td>
@@ -220,18 +220,26 @@ definePageMeta({
 
 const idProd = useRoute().params.id;
 const { $objstring } = useNuxtApp();
+const config = useRuntimeConfig();
 
 const hiddenAddProdDetailBox = ref(true);
 const hiddenAddProdPropBox = ref(true);
 const loadingGenAI = ref(false);
 
-const { data: product } = await useFetch('http://localhost:3000/api/products/' + idProd);
+const { data: product } = await useFetch('/products/' + idProd, {
+    baseURL: config.public.apiBase
+});
 
-const { data: categories } = await useFetch('http://localhost:3000/api/category');
+const { data: categories } = await useFetch('/category', {
+    baseURL: config.public.apiBase
+});
 
-const { data: suppliers } = await useFetch('http://localhost:3000/api/suppliers');
+const { data: suppliers } = await useFetch('/suppliers',{
+    baseURL: config.public.apiBase
+});
 
-const { data: productDetails } = await useFetch('http://localhost:3000/api/productdetails', {
+const { data: productDetails } = await useFetch('/productdetails', {
+    baseURL: config.public.apiBase,
     method: 'GET',
     query: {
         product: idProd
@@ -265,7 +273,8 @@ const prodDetail = ref({
     productId: idProd
 })
 
-const { data: itemProps } = await useFetch('http://localhost:3000/api/productprops', {
+const { data: itemProps } = await useFetch('/productprops', {
+    baseURL: config.public.apiBase,
     method: 'GET',
     query: {
         product: idProd
@@ -273,7 +282,8 @@ const { data: itemProps } = await useFetch('http://localhost:3000/api/productpro
 })
 
 const addProductProp = async () => {
-    await useFetch('http://localhost:3000/api/productprops/', {
+    await useFetch('/productprops/', {
+        baseURL: config.public.apiBase,
         method: 'POST',
         body: $objstring(prodProp.value),
         watch: false,
@@ -295,7 +305,8 @@ const addProductProp = async () => {
 
 const addProductDetail = async () => {
 
-    await useFetch('http://localhost:3000/api/productdetails/', {
+    await useFetch('/productdetails/', {
+        baseURL: config.public.apiBase,
         method: 'POST',
         body: $objstring(prodDetail.value),
         watch: false,
@@ -331,7 +342,8 @@ const editProduct = async () => {
         qty: product.value.result.qty
     });
 
-    await useFetch('http://localhost:3000/api/products/' + idProd, {
+    await useFetch('/products/' + idProd, {
+        baseURL: config.public.apiBase,
         method: 'PATCH',
         body: $objstring(formData.value),
         watch: false,
@@ -349,7 +361,8 @@ const editProduct = async () => {
 const genAI = async () => {
     loadingGenAI.value = true;
 
-    const { data, pending, error } = await useFetch('http://localhost:3000/api/gemini/prompt', {
+    const { data, pending, error } = await useFetch('/gemini/prompt', {
+        baseURL: config.public.apiBase,
         method: 'POST',
         body: $objstring({
             prompt: `viết mô tả ngắn gọn khoảng 400 ký tự cho sản phẩm: ${product.value.result.name}`

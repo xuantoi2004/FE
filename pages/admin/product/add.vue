@@ -174,9 +174,13 @@ const product = ref({
 
 const loadingGenAI = ref(false);
 
-const { data: categories } = await useFetch('http://localhost:3000/api/category');
+const { data: categories } = await useFetch('/category',{
+    baseURL: config.public.apiBase
+});
 
-const { data: suppliers } = await useFetch('http://localhost:3000/api/suppliers');
+const { data: suppliers } = await useFetch('/suppliers',{
+    baseURL: config.public.apiBase
+});
 
 const onFileChange = async (e) => {
     // Lấy file được chọn
@@ -214,7 +218,8 @@ const onFileChange = async (e) => {
 const resetProduct = () => { }
 
 const addProduct = async () => {
-    await useFetch('http://localhost:3000/api/products', {
+    await useFetch('/products', {
+        baseURL: config.public.apiBase,
         method: 'POST',
         body: $objstring(product.value),
         onResponse: ({ response }) => {
@@ -231,7 +236,8 @@ const addProduct = async () => {
 const genAI = async () => {
     loadingGenAI.value = true;
 
-    const { data, pending, error } = await useFetch('http://localhost:3000/api/gemini/prompt', {
+    const { data, pending, error } = await useFetch('/gemini/prompt', {
+        baseURL: config.public.apiBase,
         method: 'POST',
         body: $objstring({
             prompt: `viết mô tả ngắn gọn khoảng 400 ký tự cho sản phẩm: ${product.value.name}`

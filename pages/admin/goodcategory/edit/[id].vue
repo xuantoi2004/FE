@@ -33,7 +33,7 @@
 definePageMeta({
     layout: 'admin', middleware: 'auth-admin',
 })
-
+const config = useRuntimeConfig();
 const route = useRoute();
 const idGoodCate = route.params.id;
 
@@ -47,7 +47,8 @@ const goodCate = ref({
     "picture": "",
 })
 
-const { data: initGoodCate } = await useFetch('http://localhost:3000/api/goods-category/' + idGoodCate, {
+const { data: initGoodCate } = await useFetch('/goods-category/' + idGoodCate, {
+    baseURL: config.public.apiBase,
     method: 'GET'
 })
 
@@ -57,7 +58,8 @@ goodCate.value = {
 }
 
 const editSupplier = async () => {
-    await useFetch('http://localhost:3000/api/goods-category/' + idGoodCate, {
+    await useFetch('/goods-category/' + idGoodCate, {
+        baseURL: config.public.apiBase,
         method: 'PATCH',
         body: goodCate,
         onResponse({ response }) {

@@ -84,7 +84,7 @@
 definePageMeta({
     layout: 'admin', middleware: 'auth-admin',
 })
-
+const config = useRuntimeConfig();
 const route = useRoute();
 const idSupplier = route.params.id;
 
@@ -110,7 +110,8 @@ let supplier = ref({
     "active": false
 })
 
-const {data: initSupplier} = await useFetch('http://localhost:3000/api/suppliers/'+idSupplier, {
+const {data: initSupplier} = await useFetch('/suppliers/'+idSupplier, {
+    baseURL: config.public.apiBase,
     method: 'GET'
 })
 
@@ -120,7 +121,8 @@ supplier.value = {
 }
 
 const editSupplier = async () => {
-    await useFetch('http://localhost:3000/api/suppliers/'+idSupplier, {
+    await useFetch('/suppliers/'+idSupplier, {
+        baseURL: config.public.apiBase,
         method: 'PATCH',
         body: $objstring(supplier.value),
         onResponse({response}) {

@@ -130,7 +130,8 @@ definePageMeta({
     layout: 'admin', middleware: 'auth-admin',
 })
 
-const { $objstring } = useNuxtApp()
+const { $objstring } = useNuxtApp();
+const config = useRuntimeConfig();
 
 const customer = ref({
     firstName: '',
@@ -155,7 +156,8 @@ const customer = ref({
 })
 
 const addCustomer = async () => {
-    await useFetch('http://localhost:3000/api/customers', {
+    await useFetch('/customers', {
+        baseURL: config.public.apiBase,
         method: 'POST',
         body: $objstring(customer.value),
         onResponse: ({ response }) => {

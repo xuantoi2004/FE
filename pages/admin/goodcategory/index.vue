@@ -96,15 +96,19 @@ import { ref } from "vue";
 definePageMeta({
     layout: 'admin', middleware: 'auth-admin',
 })
-
+const config = useRuntimeConfig();
 const goodCate = ref({
     good_name: '',
     description: '',
     picture: 'https://i.imgur.com/9qEXutu.png',
 })
 
-const {data: categories} = await useFetch('http://localhost:3000/api/category');
-const {data: products} = await useFetch('http://localhost:3000/api/products');
+const {data: categories} = await useFetch('/category',{
+    baseURL: config.public.apiBase
+});
+const {data: products} = await useFetch('/products',{
+    baseURL: config.public.apiBase
+});
 const headers = ref([
     { text: "Tên ngành hàng", value: "name" },
     { text: "Mô tả", value: "description", sortable: true },
@@ -115,7 +119,9 @@ const headers = ref([
 let items = ref([]);
 
 // Fetch the goods categories and populate the items array
-const { data: goodsCategories } = await useFetch('http://localhost:3000/api/goods-category');
+const { data: goodsCategories } = await useFetch('/goods-category',{
+    baseURL: config.public.apiBase
+});
 
 // After fetching the data, populate the items array
 items.value = goodsCategories.value.result.map(gc => ({
@@ -126,10 +132,10 @@ items.value = goodsCategories.value.result.map(gc => ({
 }));
 
 const addGoodCate = async () => {
-    await useFetch('http://localhost:3000/api/goods-category', {
+    await useFetch('/goods-category', {
+        baseURL: config.public.apiBase,
         method: 'POST',
         body: goodCate.value,
-        watch: false,
         async onResponse({
             request, response, options
         }) {
@@ -156,7 +162,8 @@ const changeSelect = (itemId, selectedValue) => {
 };
 
 const removeItem = async (itemId) => {
-    const {data: result} = await useFetch(`http://localhost:3000/api/goods-category/${itemId}`, {
+    const {data: result} = await useFetch(`/goods-category/${itemId}`, {
+        baseURL: config.public.apiBase,
         method: 'DELETE'
     })
 

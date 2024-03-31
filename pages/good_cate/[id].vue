@@ -89,17 +89,22 @@
     </div>
 </template>
 <script setup>
+const config = useRuntimeConfig();
 const lengthProduct = ref(24);
 const lengthArr = ref([24,16,8,4,2])
 const idGoodCate = useRoute().params.id;
-const { data: goodCate } = await useFetch('http://localhost:3000/api/goods-category/' + idGoodCate);
-const { data: categories } = await useFetch('http://localhost:3000/api/category', {
+const { data: goodCate } = await useFetch('/goods-category/' + idGoodCate,{
+    baseURL: config.public.apiBase
+});
+const { data: categories } = await useFetch('/category', {
+    baseURL: config.public.apiBase,
     method: 'GET',
     query: {
         goodCateId: idGoodCate
     }
 })
-const { data: products } = await useFetch('http://localhost:3000/api/products', {
+const { data: products } = await useFetch('/products', {
+    baseURL: config.public.apiBase,
     method: 'GET',
     query: {
         goodCateId: idGoodCate,

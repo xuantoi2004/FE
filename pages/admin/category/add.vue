@@ -55,7 +55,8 @@ definePageMeta({
     layout: 'admin', middleware: 'auth-admin',
 })
 
-const { $objstring } = useNuxtApp()
+const config = useRuntimeConfig();
+const { $objstring } = useNuxtApp();
 
 const category = ref({
     categoryName: '',
@@ -65,10 +66,13 @@ const category = ref({
     goodCateId: ''
 })
 
-const { data: goodCates } = await useFetch('http://localhost:3000/api/goods-category');
+const { data: goodCates } = await useFetch('/goods-category', {
+    baseURL: config.public.apiBase
+});
 
 const addCate = async () => {
-    await useFetch('http://localhost:3000/api/category', {
+    await useFetch('/category', {
+        baseURL: config.public.apiBase,
         method: 'POST',
         body: $objstring(category.value),
         onResponse: ({ response }) => {

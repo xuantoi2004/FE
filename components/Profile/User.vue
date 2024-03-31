@@ -131,6 +131,7 @@
 import { useUserStore } from '~/store/user';
 
 const {$objstring} = useNuxtApp();
+const config = useRuntimeConfig();
 const props = defineProps({
     user: {
         type: Object,
@@ -175,7 +176,8 @@ const updateUser = async () => {
     }
 
     if (checkCondSendReq) {
-        await useFetch('http://localhost:3000/api/customers/'+user.value.id, {
+        await useFetch('/customers/'+user.value.id, {
+            baseURL: config.public.apiBase,
             method: 'PATCH',
             body: $objstring(formData),
             onResponse: ({response}) => {

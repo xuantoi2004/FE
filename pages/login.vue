@@ -86,6 +86,7 @@ import { ref, computed } from 'vue';
 import { useUserStore } from '~/store/user';
 
 const {$objstring} = useNuxtApp();
+const config = useRuntimeConfig();
 
 const isDisplayLoginBox = ref(true);
 const isOnLogin = ref(true);
@@ -123,7 +124,8 @@ const closeLoginBox = () => {
 };
 
 const submitLogin = async () => {
-  await useFetch('http://localhost:3000/api/customers/login',{
+  await useFetch('/customers/login',{
+    baseURL: config.public.apiBase,
     method: 'POST',
     body: $objstring(payloadLogin.value),
     watch: false,
@@ -142,7 +144,8 @@ const submitLogin = async () => {
 }
 
 const submitRegister = async () => {
-  await useFetch('http://localhost:3000/api/customers/register',{
+  await useFetch('/customers/register',{
+    baseURL: config.public.apiBase,
     method: 'POST',
     body: $objstring(payload.value),
     watch: false,

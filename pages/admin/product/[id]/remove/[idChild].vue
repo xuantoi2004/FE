@@ -13,7 +13,7 @@
 definePageMeta({
     layout: 'admin', middleware: 'auth-admin',
 })
-
+const config = useRuntimeConfig();
 const idChild = useRoute().params.idChild;
 const { $objstring } = useNuxtApp();
 
@@ -21,11 +21,14 @@ const goBack = () => {
     useRouter().back();
 }
 
-const {data: prodChild} = await useFetch('http://localhost:3000/api/productdetails/' + idChild);
+const {data: prodChild} = await useFetch('/productdetails/' + idChild,{
+    baseURL: config.public.apiBase
+});
 
 
 const removeChild = async () => {
-    await useFetch('http://localhost:3000/api/productdetails/' + idChild, {
+    await useFetch('/productdetails/' + idChild, {
+        baseURL: config.public.apiBase,
         method: 'DELETE',
         onResponse({ response }) {
             if (response.ok) {

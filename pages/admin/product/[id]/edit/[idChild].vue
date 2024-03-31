@@ -26,16 +26,17 @@ definePageMeta({
 })
 const idChild = useRoute().params.idChild;
 const { $objstring } = useNuxtApp();
+const config = useRuntimeConfig();
 
-const { data: prodChild } = await useFetch('http://localhost:3000/api/productdetails/' + idChild);
-
-console.log(prodChild.value.result)
+const { data: prodChild } = await useFetch('/productdetails/' + idChild,{
+    baseURL: config.public.apiBase
+});
 
 const editChild = async () => {
-    await useFetch('http://localhost:3000/api/productdetails/' + idChild, {
+    await useFetch('/productdetails/' + idChild, {
+        baseURL: config.public.apiBase,
         method: 'PATCH',
         body: $objstring(prodChild.value.result),
-        watch: false,
         onResponse: ({ response }) => {
             if (response.ok) {
                 alert('Edit success');

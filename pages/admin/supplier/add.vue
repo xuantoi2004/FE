@@ -88,6 +88,7 @@
 definePageMeta({
     layout: 'admin', middleware: 'auth-admin',
 })
+const config = useRuntimeConfig();
 const router = useRouter();
 const { $objstring } = useNuxtApp();
 
@@ -111,7 +112,8 @@ const supplier = ref({
 })
 
 const createSupplier = async () => {
-    await useFetch('http://localhost:3000/api/suppliers', {
+    await useFetch('/suppliers', {
+        baseURL: config.public.apiBase,
         method: 'POST',
         body: $objstring(supplier.value),
         onResponse({

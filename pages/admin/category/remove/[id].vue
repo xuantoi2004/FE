@@ -14,6 +14,7 @@ definePageMeta({
     layout: 'admin', middleware: 'auth-admin',
 })
 
+const config = useRuntimeConfig();
 const route = useRoute();
 const idCategory = route.params.id;
 
@@ -21,12 +22,14 @@ const goBack = () => {
     useRouter().back();
 }
 
-const { data: category } = await useFetch('http://localhost:3000/api/category/' + idCategory, {
+const { data: category } = await useFetch('/category/' + idCategory, {
+    baseURL: config.public.apiBase,
     method: 'GET'
 })
 
 const removeCategory = async () => {
-    await useFetch('http://localhost:3000/api/category/' + idCategory, {
+    await useFetch('/category/' + idCategory, {
+        baseURL: config.public.apiBase,
         method: 'DELETE',
         onResponse({ response }) {
             if (response.ok) {

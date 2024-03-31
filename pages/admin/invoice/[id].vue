@@ -103,12 +103,16 @@ definePageMeta({
     layout: 'admin',
     middleware: ['auth-admin', 'auth']
 })
-
+const config = useRuntimeConfig();
 const idInvoice = useRoute().params.id;
 
 const userStore = useUserStore();
-const { data: user } = await useFetch('http://localhost:3000/api/customers/' + userStore.user.id);
-const { data: invoice } = await useFetch('http://localhost:3000/api/invoice/' + idInvoice);
+const { data: user } = await useFetch('/customers/' + userStore.user.id,{
+    baseURL: config.public.apiBase
+});
+const { data: invoice } = await useFetch('/invoice/' + idInvoice, {
+    baseURL: config.public.apiBase
+});
 
 const formatDate = (inputDateString) => {
     const date = new Date(inputDateString);
@@ -123,7 +127,8 @@ const approveInvoice = async () => {
     if (invoice.value.result.status == 2) {
         alert('Đơn đã được duyệt !')
     } else {
-        await useFetch('http://localhost:3000/api/invoice/approve/' + idInvoice, {
+        await useFetch('/invoice/approve/' + idInvoice, {
+            baseURL: config.public.apiBase,
             method: 'PATCH',
             onResponse: ({ response }) => {
                 if (response.ok) {
@@ -141,7 +146,8 @@ const rejectInvoice = async () => {
     if (invoice.value.result.status == 0) {
         alert('Đơn đã được hủy !')
     } else {
-        await useFetch('http://localhost:3000/api/invoice/reject/' + idInvoice, {
+        await useFetch('/invoice/reject/' + idInvoice, {
+            baseURL: config.public.apiBase,
             method: 'PATCH',
             onResponse: ({ response }) => {
                 if (response.ok) {

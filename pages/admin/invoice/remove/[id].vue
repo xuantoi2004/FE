@@ -13,7 +13,7 @@
 definePageMeta({
     layout: 'admin', middleware: 'auth-admin',
 })
-
+const config = useRuntimeConfig();
 const route = useRoute();
 const idInvoice = route.params.id;
 
@@ -21,7 +21,9 @@ const goBack = () => {
     useRouter().back();
 }
 
-const {data: invoice} = await useFetch('http://localhost:3000/api/invoice/'+ idInvoice);
+const {data: invoice} = await useFetch('/invoice/'+ idInvoice, {
+    baseURL: config.public.apiBase
+});
 
 if(invoice.value.result.status == 1) {
     alert('Cần duyệt hoặc hủy trước khi xóa');
@@ -29,7 +31,8 @@ if(invoice.value.result.status == 1) {
 }
 
 const removeInvoice = async () => {
-    await useFetch('http://localhost:3000/api/invoice/' + idInvoice, {
+    await useFetch('/invoice/' + idInvoice, {
+        baseURL: config.public.apiBase,
         method: 'DELETE',
         onResponse({ response }) {
             if (response.ok) {

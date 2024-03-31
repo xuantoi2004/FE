@@ -27,6 +27,7 @@
     </div>
 </template>
 <script setup>
+const config = useRuntimeConfig();
 const props = defineProps({
     category: {
         type: Object,
@@ -36,7 +37,8 @@ const props = defineProps({
 
 const category = ref(props.category);
 
-const { data: products } = await useFetch('http://localhost:3000/api/products', {
+const { data: products } = await useFetch('/products', {
+    baseURL: config.public.apiBase,
     method: 'GET',
     query: {
         categoryId: category.value.id,

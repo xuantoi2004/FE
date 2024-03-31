@@ -196,6 +196,7 @@
 <script setup>
 import { useCartStore } from '~/store/cart';
 
+const config = useRuntimeConfig();
 const idProduct = useRoute().params.id;
 
 const qtyItem = ref(1);
@@ -209,16 +210,24 @@ const buyNow = () => {
     navigateTo('/cart')
 }
 
-const { data: product } = await useFetch('http://localhost:3000/api/products/' + idProduct);
+const { data: product } = await useFetch('/products/' + idProduct,{
+    baseURL: config.public.apiBase
+});
 
-const { data: productSameCates } = await useFetch('http://localhost:3000/api/products', {
+useHead({
+    title: product.value.result.name
+})
+
+const { data: productSameCates } = await useFetch('/products', {
+    baseURL: config.public.apiBase,
     method: 'GET',
     query: {
         categoryId: product.value.result.category.id
     }
 })
 
-const { data: prodProps } = await useFetch('http://localhost:3000/api/productprops', {
+const { data: prodProps } = await useFetch('/productprops', {
+    baseURL: config.public.apiBase,
     method: 'GET',
     query: {
         product: idProduct,
@@ -226,7 +235,8 @@ const { data: prodProps } = await useFetch('http://localhost:3000/api/productpro
     }
 })
 
-const { data: prodChilds } = await useFetch('http://localhost:3000/api/productdetails', {
+const { data: prodChilds } = await useFetch('/productdetails', {
+    baseURL: config.public.apiBase,
     method: 'GET',
     query: {
         product: idProduct,

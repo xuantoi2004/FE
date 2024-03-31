@@ -222,17 +222,27 @@ definePageMeta({
     layout: 'admin',
     middleware: 'auth-admin'
 })
+const config = useRuntimeConfig();
 
-const {data: suppliers} = await useFetch('http://localhost:3000/api/suppliers');
-const {data: products} = await useFetch('http://localhost:3000/api/products', {
+const {data: suppliers} = await useFetch('/suppliers',{
+    baseURL: config.public.apiBase
+});
+const {data: products} = await useFetch('/products', {
+    baseURL: config.public.apiBase,
     method: 'GET',
     query: {
         limit: 6
     }
 });
-const {data: customers} = await useFetch('http://localhost:3000/api/customers');
-const {data: goodCates} = await useFetch('http://localhost:3000/api/goods-category');
-const {data: categories} = await useFetch('http://localhost:3000/api/category');
+const {data: customers} = await useFetch('/customers',{
+    baseURL: config.public.apiBase
+});
+const {data: goodCates} = await useFetch('/goods-category',{
+    baseURL: config.public.apiBase
+});
+const {data: categories} = await useFetch('/category',{
+    baseURL: config.public.apiBase
+});
 
 
 const headerInvoices = ref([
@@ -246,7 +256,9 @@ const headerInvoices = ref([
     { text: "Trạng thái", value: "status", sortable: true },
 ])
 
-const {data: invoices} = await useFetch('http://localhost:3000/api/invoice');
+const {data: invoices} = await useFetch('/invoice',{
+    baseURL: config.public.apiBase
+});
 
 const itemInvoices = ref([]);
 itemInvoices.value = invoices.value.result.map(item => {

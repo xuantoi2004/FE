@@ -202,6 +202,7 @@ import { useUserStore } from '~/store/user';
 
 const { $objstring } = useNuxtApp();
 const router = useRouter();
+const config = useRuntimeConfig();
 
 const isHovering = ref(false);
 const isHoveringAccount = ref(true);
@@ -262,7 +263,8 @@ const closeLoginBox = () => {
 };
 
 const submitLogin = async () => {
-  await useFetch('http://localhost:3000/api/customers/login', {
+  await useFetch('/customers/login', {
+    baseURL: config.public.apiBase,
     method: 'POST',
     body: $objstring(payloadLogin.value),
     watch: false,
@@ -282,7 +284,8 @@ const submitLogin = async () => {
 }
 
 const submitRegister = async () => {
-  await useFetch('http://localhost:3000/api/customers/register', {
+  await useFetch('/customers/register', {
+    baseURL: config.public.apiBase,
     method: 'POST',
     body: $objstring(payload.value),
     watch: false,

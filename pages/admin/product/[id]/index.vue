@@ -119,13 +119,17 @@ definePageMeta({
 
 const idProd = useRoute().params.id;
 const { $objstring } = useNuxtApp();
+const config = useRuntimeConfig();
 
 const hiddenAddProdDetailBox = ref(true);
 const hiddenAddProdPropBox = ref(true);
 
-const { data: product } = await useFetch('http://localhost:3000/api/products/' + idProd);
+const { data: product } = await useFetch('/products/' + idProd,{
+    baseURL: config.public.apiBase
+});
 
-const { data: productDetails } = await useFetch('http://localhost:3000/api/productdetails', {
+const { data: productDetails } = await useFetch('/productdetails', {
+    baseURL: config.public.apiBase,
     method: 'GET',
     query: {
         product: idProd
@@ -168,7 +172,8 @@ const prodDetail = ref({
     productId: idProd
 })
 
-const {data: itemProps} = await useFetch('http://localhost:3000/api/productprops',{
+const {data: itemProps} = await useFetch('/productprops',{
+    baseURL: config.public.apiBase,
     method: 'GET',
     query: {
         product: idProd
@@ -177,7 +182,8 @@ const {data: itemProps} = await useFetch('http://localhost:3000/api/productprops
 })
 
 const addProductProp = async () => {
-    await useFetch('http://localhost:3000/api/productprops/', {
+    await useFetch('/productprops/', {
+        baseURL: config.public.apiBase,
         method: 'POST',
         body: $objstring(prodProp.value),
         watch: false,
@@ -199,7 +205,8 @@ const addProductProp = async () => {
 
 const addProductDetail = async () => {
 
-    await useFetch('http://localhost:3000/api/productdetails/', {
+    await useFetch('/productdetails/', {
+        baseURL: config.public.apiBase,
         method: 'POST',
         body: $objstring(prodDetail.value),
         watch: false,

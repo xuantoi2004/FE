@@ -32,12 +32,15 @@ definePageMeta({
     middleware: ['auth'],
 });
 
+const config = useRuntimeConfig();
 const isDashboardTab = ref(true);
 const isProfileTab = ref(false);
 
 const userStore = useUserStore();
 const userId = userStore.user.id;
-const { data: user } = await useFetch('http://localhost:3000/api/customers/' + userId);
+const { data: user } = await useFetch('/customers/' + userId, {
+    baseURL: config.public.apiBase
+});
 
 const showDashboardTab = () => {
     isDashboardTab.value = true;

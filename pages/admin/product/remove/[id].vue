@@ -13,7 +13,7 @@
 definePageMeta({
     layout: 'admin', middleware: 'auth-admin',
 })
-
+const config = useRuntimeConfig();
 const route = useRoute();
 const idProduct = route.params.id;
 
@@ -21,12 +21,14 @@ const goBack = () => {
     useRouter().back();
 }
 
-const {data: product} = await useFetch('http://localhost:3000/api/products/'+idProduct, {
+const {data: product} = await useFetch('/products/'+idProduct, {
+    baseURL: config.public.apiBase,
     method: 'GET'
 })
 
 const removeProduct = async () => {
-    await useFetch('http://localhost:3000/api/products/'+idProduct, {
+    await useFetch('/products/'+idProduct, {
+        baseURL: config.public.apiBase,
         method: 'DELETE',
         onResponse({response}) {
             if(response.ok) {

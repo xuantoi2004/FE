@@ -54,7 +54,8 @@ definePageMeta({
     layout: 'admin', middleware: 'auth-admin',
 })
 
-const {$objstring} = useNuxtApp()
+const {$objstring} = useNuxtApp();
+const config = useRuntimeConfig();
 
 const route = useRoute();
 const idCate = route.params.id;
@@ -71,9 +72,12 @@ const cate = ref({
     "active": ""
 })
 
-const { data: goodCates } = await useFetch('http://localhost:3000/api/goods-category');
+const { data: goodCates } = await useFetch('/goods-category', {
+    baseURL: config.public.apiBase
+});
 
-const { data: initCate } = await useFetch('http://localhost:3000/api/category/' + idCate, {
+const { data: initCate } = await useFetch('/category/' + idCate, {
+    baseURL: config.public.apiBase,
     method: 'GET'
 })
 
@@ -84,10 +88,10 @@ cate.value = {
 }
 
 const editCategory = async () => {
-    await useFetch('http://localhost:3000/api/category/' + idCate, {
+    await useFetch('/category/' + idCate, {
+        baseURL: config.public.apiBase,
         method: 'PATCH',
         body: $objstring(cate.value),
-        watch: false,
         onResponse({ response }) {
             if (response.ok) {
                 alert('Sửa danh mục thành công')

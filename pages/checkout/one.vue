@@ -180,6 +180,7 @@ import { useCartStore } from '~/store/cart';
 import { useUserStore } from '~/store/user';
 
 const {$objstring} = useNuxtApp();
+const config = useRuntimeConfig();
 
 const cartStore = useCartStore();
 const userStore = useUserStore();
@@ -187,7 +188,9 @@ const address_option = ref(1);
 
 const cart = storeToRefs(cartStore);
 
-const { data: customer } = await useFetch('http://localhost:3000/api/customers/' + userStore.user.id);
+const { data: customer } = await useFetch('/customers/' + userStore.user.id,{
+    baseURL: config.public.apiBase
+});
 
 const invoice = ref({
     full_name: customer.value.result.firstName + ' ' + customer.value.result.lastName,
@@ -230,7 +233,8 @@ const addInvoice = async () => {
     const formSend = $objstring({...invoice.value});
     formSend.invoice_childs = invoiceChild.value;
 
-    await useFetch('http://localhost:3000/api/invoice/checkout', {
+    await useFetch('/invoice/checkout', {
+        baseURL: config.public.apiBase,
         method: 'POST',
         body: formSend,
         onResponse: ({response}) => {

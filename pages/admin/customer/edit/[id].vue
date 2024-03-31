@@ -132,11 +132,15 @@ definePageMeta({
 
 const idCustomer = useRoute().params.id;
 const { $objstring } = useNuxtApp();
+const config = useRuntimeConfig();
 
-const {data: customer} = await useFetch('http://localhost:3000/api/customers/'+idCustomer);
+const {data: customer} = await useFetch('/customers/'+idCustomer,{
+    baseURL: config.public.apiBase
+});
 
 const editCustomer = async () => {
-    await useFetch('http://localhost:3000/api/customers/update-full/'+idCustomer, {
+    await useFetch('/customers/update-full/'+idCustomer, {
+        baseURL: config.public.apiBase,
         method: 'PATCH',
         body: $objstring(customer.value.result),
         onResponse: ({ response }) => {

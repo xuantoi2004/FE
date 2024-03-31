@@ -46,7 +46,6 @@ const { data: products } = await useFetch('/products', {
 })
 
 watch(() => route.query.name, async (newName) => {
-    console.log(newName);
     const { data, pending, error } = await useFetch('/products', {
         baseURL: config.public.apiBase,
         method: 'GET',

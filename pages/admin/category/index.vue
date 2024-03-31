@@ -141,7 +141,8 @@ definePageMeta({
     layout: 'admin', middleware: 'auth-admin',
 })
 
-const {$objstring} = useNuxtApp()
+const {$objstring} = useNuxtApp();
+const config = useRuntimeConfig();
 
 const category = ref({
     categoryName: '',
@@ -151,9 +152,13 @@ const category = ref({
     active: ''
 })
 
-const { data: goodCates } = await useFetch('http://localhost:3000/api/goods-category');
+const { data: goodCates } = await useFetch('/goods-category', {
+    baseURL: config.public.apiBase
+});
 
-const {data: products} = await useFetch('http://localhost:3000/api/products');
+const {data: products} = await useFetch('/products', {
+    baseURL: config.public.apiBase
+});
 
 
 const headers = ref([
@@ -165,7 +170,8 @@ const headers = ref([
 ])
 
 const addCategory = async () => {
-    await useFetch('http://localhost:3000/api/category', {
+    await useFetch('/category', {
+        baseURL: config.public.apiBase,
         method: 'POST',
         body: $objstring(category.value),
         watch: false,
@@ -189,7 +195,9 @@ const addCategory = async () => {
 
 const items = ref([]);
 
-const { data: initCates } = await useFetch('http://localhost:3000/api/category');
+const { data: initCates } = await useFetch('/category', {
+    baseURL: config.public.apiBase
+});
 
 items.value = initCates.value.result.map(cate => {
     return {

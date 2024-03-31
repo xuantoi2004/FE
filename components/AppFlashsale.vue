@@ -13,18 +13,18 @@
                 </div>
             </div>
         </div>
-        <div class="bg-white">
+        <div class="bg-white flex flex-col">
             <ul class="flex">
-                <li class="w-1/5 p-5" v-for="product in products.result" :id="product.id">
+                <li class="w-1/5 p-5 flex flex-col justify-between" v-for="product in products.result" :id="product.id">
                     <ItemFlashSale :product="product" />
                 </li>
             </ul>
-            <div class="px-5 py-2 w-2/12 rounded text-center mx-auto mt-4 hover:text-amber-400 hover:bg-gray-800 font-semibold mb-5 bg-amber-400 text-gray-800">
-                Xem Thêm</div>
+            <NuxtLink to="/flashsale" class="px-5 py-2 w-2/12 rounded text-center mx-auto mt-4 hover:text-amber-400 hover:bg-gray-800 font-semibold mb-5 bg-amber-400 text-gray-800">Xem thêm</NuxtLink>
         </div>
     </div>
 </template>
 <script setup>
+const config = useRuntimeConfig();
 const countdown = ref({
     hours: '00',
     minutes: '45',
@@ -61,7 +61,8 @@ onMounted(() => {
     startCountdown();
 });
 
-const { data: products } = await useFetch('http://localhost:3000/api/products', {
+const { data: products } = await useFetch('/products', {
+    baseURL: config.public.apiBase,
     method: 'GET',
     query: {
         flashsale: true,

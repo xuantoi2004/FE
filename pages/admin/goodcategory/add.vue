@@ -37,7 +37,7 @@
 definePageMeta({
     layout: 'admin', middleware: 'auth-admin',
 })
-
+const config = useRuntimeConfig();
 const goBack = () => {
     useRouter().back();
 }
@@ -48,10 +48,13 @@ const goodCate = ref({
     "picture": "https://i.imgur.com/9qEXutu.png"
 })
 
-const { data: suppliers } = await useFetch('http://localhost:3000/api/suppliers');
+const { data: suppliers } = await useFetch('/suppliers', {
+    baseURL: config.public.apiBase
+});
 
 const addGoodCate = async () => {
-    await useFetch('http://localhost:3000/api/goods-category/', {
+    await useFetch('/goods-category/', {
+        baseURL: config.public.apiBase,
         method: 'POST',
         body: goodCate.value,
         onResponse({ response }) {
