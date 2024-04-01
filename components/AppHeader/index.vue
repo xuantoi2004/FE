@@ -1,17 +1,32 @@
 <template>
-  <div class="flex bg-sky-600">
-    <div class="w-5/6 mx-auto bg-sky-300">
+  <div class="flex bg-white">
+    <div class="w-5/6 mx-auto bg-white">
       <!-- <img src="/img/banner/banner-0.jpg" alt="" class="w-full"> -->
+      <div class="flex gap-2 py-2 items-center">
+        <IconPhone class="text-green-600" />
+        <span class="font-bold">Hoa quả sạch Fuji:</span>
+        <span class="font-bold text-green-600">1900 2268</span>
+      </div>
+
     </div>
   </div>
-  <div class="bg-white py-4">
-    <div class="flex w-5/6 mx-auto justify-between">
-      <div class="flex justify-between items-center">
+  <div class="bg-green-600 py-2">
+    <div class="flex w-5/6 mx-auto justify-between items-center">
+      <!-- Search Bar -->
+      <div class="rounded-md border-gray-200 border flex items-center w-1/6 bg-white">
+        <input type="text" placeholder="Tìm kiếm.." v-model="searchName"
+          class="w-full focus:border-transparent focus:outline-none py-1 px-2" autocomplete="false">
+        <button @click="searchProduct" class="bg-gray-200 text-gray-800 rounded-md ms-auto px-3 py-1 hover:bg-gray-400 h-full rounded-l-none">
+          <IconGlass />
+        </button>
+      </div>
+      <!-- Logo -->
+      <div class="flex justify-center items-center w-4/6">
         <NuxtLink to="/">
-          <img src="/img/logo_kingshoes.png" class="w-40" alt="">
-          <!-- <div class="font-bold text-xl text-gray-800">KingShoes</div> -->
+          <img src="/img/logo.png" class="w-16 bg-white rounded-full border-amber-500 border-2" alt="">
+          <!-- <div class="font-bold text-xl text-gray-800">Fuji</div> -->
         </NuxtLink>
-        <div class="ml-5">
+        <div class="ml-5 hidden">
           <div class="group" @mouseenter="isHovering = true" @mouseleave="isHovering = false">
             <div class="flex">
               <IconMenuBlack class="cursor-pointer text-gray-800" />
@@ -24,22 +39,15 @@
           </div>
         </div>
       </div>
-      <div class="rounded-lg border-gray-400 border ps-5 pe-1 flex items-center w-3/6 mx-5">
-        <input type="text" placeholder="Tìm kiếm sản phẩm mong muốn.." v-model="searchName"
-          class="w-full focus:border-transparent focus:outline-none" autocomplete="false">
-        <button @click="searchProduct" class="bg-gray-800 text-amber-400 rounded-lg ms-auto px-5 py-1 hover:bg-gray-500">
-          <IconGlass />
-        </button>
-      </div>
-      <div class="flex justify-between items-center px-1 text-sm">
-        <div class="flex flex-col items-center text-gray-800 mr-2 cursor-pointer hover:text-amber-400">
+      <div class="flex justify-end items-center px-1 text-sm w-1/6">
+        <div class="hidden flex-col items-center text-gray-800 mr-2 cursor-pointer hover:text-amber-400">
           <IconBell />
           <div class="uppercase font-semibold text-sm">Thông báo</div>
         </div>
 
         <div class="relative">
           <div class="group" @mouseenter="isHoveringCart = false" @mouseleave="isHoveringCart = true">
-            <div class="flex flex-col items-center text-gray-800 mr-2 text-sm cursor-pointer hover:text-amber-400">
+            <div class="flex flex-col items-center text-white mr-2 text-sm cursor-pointer hover:text-green-300">
               <IconCart class="font-semibold" />
               <div class="uppercase text-sm font-semibold">Giỏ hàng</div>
             </div>
@@ -52,7 +60,7 @@
 
         <div class="relative">
           <div class="group" @mouseenter="isHoveringAccount = false" @mouseleave="isHoveringAccount = true">
-            <div class="flex flex-col items-center text-gray-800 mr-2 text-sm cursor-pointer hover:text-amber-400">
+            <div class="flex flex-col items-center text-white mr-2 text-sm cursor-pointer hover:text-green-300">
               <IconUser class="font-semibold" />
               <div class="uppercase font-semibold text-sm">{{ userStore.user.full_name }}</div>
             </div>
@@ -85,8 +93,6 @@
       </div>
     </div>
   </div>
-
-
   <div class="w-full h-full fixed top-0 left-0 z-50 bg-gray-800 bg-opacity-50 flex items-center justify-center"
     :class="{ hidden: !isDisplayLoginBox }" @click="closeLoginBox">
     <div class="bg-white p-4 mx-auto w-4/12 flex flex-col rounded-md" @click.stop>
@@ -178,6 +184,31 @@
         </div>
       </div>
 
+    </div>
+  </div>
+  <div class="bg-white">
+    <div class="w-4/6 mx-auto py-3 flex gap-3 justify-center">
+      <NuxtLink to="/" class="bg-green-600 rounded-full px-3 py-2 text-white font-bold capitalize">
+        Home
+      </NuxtLink>
+      <div class="hover:bg-green-600 hover:rounded-full px-3 py-2 hover:text-white font-bold capitalize">
+        Sản phẩm
+      </div>
+      <div class="hover:bg-green-600 hover:rounded-full px-3 py-2 hover:text-white font-bold capitalize">
+        Thanh toán
+      </div>
+      <div class="hover:bg-green-600 hover:rounded-full px-3 py-2 hover:text-white font-bold capitalize">
+        Tin tức
+      </div>
+      <div class="hover:bg-green-600 hover:rounded-full px-3 py-2 hover:text-white font-bold capitalize">
+        Giới thiệu
+      </div>
+      <div class="hover:bg-green-600 hover:rounded-full px-3 py-2 hover:text-white font-bold capitalize">
+        Liên hệ
+      </div>
+      <div class="hover:bg-green-600 hover:rounded-full px-3 py-2 hover:text-white font-bold capitalize">
+        Hệ thống cửa hàng
+      </div>
     </div>
   </div>
 </template>

@@ -11,7 +11,7 @@
                 <div>Tổng cộng</div>
                 <div class="text-gray-800 font-semibold text-lg">{{ cartStore.totalPrice.toLocaleString() }} đ</div>
             </div>
-            <NuxtLink to="/cart" class="text-white bg-gray-800 font-semibold px-4 py-2 rounded-lg hover:text-amber-400">Xem giỏ hàng</NuxtLink>
+            <NuxtLink to="/cart" class="text-white bg-gray-800 font-semibold px-4 py-2 rounded-lg hover:text-green-300">Xem giỏ hàng</NuxtLink>
         </div>
     </div>
 </template>

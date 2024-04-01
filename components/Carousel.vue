@@ -1,9 +1,7 @@
 <template>
-    <div class="relative carousel flex">
+    <div class="relative carousel">
         <div class="slides" :style="{ transform: `translateX(-${currentIndex * 100}%)` }">
-            <img src="/img/banner/banner-fuji-1.jpg" alt="">
-            <img src="/img/banner/banner-fuji-2.jpg" alt="">
-            <img src="/img/banner/banner-fuji-3.jpg" alt="">
+            <slot />
         </div>
         <div class="absolute bottom-0 left-0 right-0 flex justify-between">
             <button @click="prev()">
@@ -17,7 +15,8 @@
 </template>
 
 <script setup>
-const currentIndex = ref(0);
+
+const currentIndex = ref(1);
 const slides = ref([]);
 
 const prev = () => {
