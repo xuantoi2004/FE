@@ -191,22 +191,22 @@
       <NuxtLink to="/" class="bg-green-600 rounded-full px-3 py-2 text-white font-bold capitalize">
         Home
       </NuxtLink>
-      <div class="hover:bg-green-600 hover:rounded-full px-3 py-2 hover:text-white font-bold capitalize">
+      <div class="hover:bg-green-600 hover:rounded-full px-3 py-2 hover:text-white font-bold capitalize duration-100">
         Sản phẩm
       </div>
-      <div class="hover:bg-green-600 hover:rounded-full px-3 py-2 hover:text-white font-bold capitalize">
+      <div class="hover:bg-green-600 hover:rounded-full px-3 py-2 hover:text-white font-bold capitalize duration-100">
         Thanh toán
       </div>
-      <div class="hover:bg-green-600 hover:rounded-full px-3 py-2 hover:text-white font-bold capitalize">
+      <div class="hover:bg-green-600 hover:rounded-full px-3 py-2 hover:text-white font-bold capitalize duration-100">
         Tin tức
       </div>
-      <div class="hover:bg-green-600 hover:rounded-full px-3 py-2 hover:text-white font-bold capitalize">
+      <div class="hover:bg-green-600 hover:rounded-full px-3 py-2 hover:text-white font-bold capitalize duration-100">
         Giới thiệu
       </div>
-      <div class="hover:bg-green-600 hover:rounded-full px-3 py-2 hover:text-white font-bold capitalize">
+      <div class="hover:bg-green-600 hover:rounded-full px-3 py-2 hover:text-white font-bold capitalize duration-100">
         Liên hệ
       </div>
-      <div class="hover:bg-green-600 hover:rounded-full px-3 py-2 hover:text-white font-bold capitalize">
+      <div class="hover:bg-green-600 hover:rounded-full px-3 py-2 hover:text-white font-bold capitalize duration-100">
         Hệ thống cửa hàng
       </div>
     </div>

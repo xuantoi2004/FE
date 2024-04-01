@@ -1,5 +1,5 @@
 <template>
-    <div class="w-1/2 flex" v-for="product in products.result">
+    <div class="w-1/2 flex hover:shadow" v-for="product in products.result">
         <NuxtLink :to="'/detail_product/' + product.id" class="w-1/3">
             <img :src="product.picture" class="p-2 w-full mx-auto" alt="">
         </NuxtLink>
@@ -9,7 +9,7 @@
                 <div class="font-semibold text-red-600 mr-2 w-2/3">
                     {{ product.price.toLocaleString() }} đ
                 </div>
-                <div class="bg-red-600 text-white py-0.5 px-1 rounded-lg">-{{ product.discount }} %</div>
+                <div class="bg-green-600 text-white py-0.5 px-1 rounded-md">-{{ product.discount }}%</div>
             </div>
             <div class="line-through">
                 {{ (product.price * (product.discount/100) + product.price).toLocaleString() }} đ

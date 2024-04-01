@@ -1,7 +1,7 @@
 <template>
-    <div class="bg-gray-100">
+    <div class="bg-white">
         <AppHeader />
-        <div>
+        <div class="flex flex-col">
             <slot />
         </div>
         <RightBar />

@@ -1,26 +1,24 @@
 <template>
     <div class="flex mt-4 flex-col">
-        <div class="flex bg-amber-400 w-full align-middle">
-            <div class="flex items-center mr-2 font-bold p-2">
-                <img src="/img/icon/flashsale.png" class="mr-2" alt=""> FLASH SALE
-            </div>
-            <div class="flex items-center border-l-2 border-gray-800 pl-2">
-                <div class="font-semibold uppercase text-sm">Kết Thúc Trong</div>
-                <div class="flex items-center ml-2">
-                    <div class="bg-white rounded-md p-1">{{ countdown.hours }}</div> :
-                    <div class="bg-white rounded-md p-1">{{ countdown.minutes }}</div> :
-                    <div class="bg-white rounded-md p-1">{{ countdown.seconds }}</div>
-                </div>
+        <div class="flex justify-center items-center text-2xl text-green-600 font-semibold">
+            <IconBolt class="text-red-500" />
+            <div class="uppercase"> FLASH SALE Trong:</div>
+            <div class="flex items-center">
+                <div class="bg-green-400 text-white rounded-md p-1">{{ countdown.hours }}</div> :
+                <div class="bg-green-400 text-white rounded-md p-1">{{ countdown.minutes }}</div> :
+                <div class="bg-green-400 text-white rounded-md p-1">{{ countdown.seconds }}</div>
             </div>
         </div>
-        <div class="bg-white flex flex-col">
-            <ul class="flex">
-                <li class="w-1/5 p-5 flex flex-col justify-between" v-for="product in products.result" :id="product.id">
-                    <ItemFlashSale :product="product" />
-                </li>
-            </ul>
-            <NuxtLink to="/flashsale" class="px-5 py-2 w-2/12 rounded text-center mx-auto mt-4 hover:text-amber-400 hover:bg-gray-800 font-semibold mb-5 bg-amber-400 text-gray-800">Xem thêm</NuxtLink>
-        </div>
+    </div>
+    <div class="flex flex-col w-5/6 mx-auto">
+        <ul class="flex">
+            <li class="w-1/5 p-5 flex flex-col border rounded hover:shadow-md" v-for="product in products.result" :id="product.id">
+                <ItemFlashSale :product="product" />
+            </li>
+        </ul>
+        <NuxtLink to="/flashsale"
+            class="px-5 py-2 w-2/12 rounded text-center mx-auto mt-4 hover:text-green-300 font-semibold mb-5 bg-green-600 text-white hover:shadow-md">
+            Xem thêm</NuxtLink>
     </div>
 </template>
 <script setup>

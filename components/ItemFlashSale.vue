@@ -1,7 +1,7 @@
 <template>
     <NuxtLink :to="'/detail_product/'+product.id" class="relative">
         <img :src="product.picture" :alt="product.name" class="h-48 mx-auto">
-        <div class="bg-orange-500 text-white rounded-full p-0.5 absolute top-5 right-0 z-10">{{product.discount}}%</div>
+        <div class="bg-green-500 text-white rounded-full p-1 absolute top-5 right-0 z-10">{{product.discount}}%</div>
         <div class="absolute inset-0 flex items-center justify-center" :class="{hidden: product.productAvailable}">
             <div class="absolute inset-0 bg-black opacity-50"></div>
             <div class="p-2 bg-red-500 text-white font-semibold z-10 rounded">
@@ -20,7 +20,7 @@
     </div>
     <div class="text-center">
         <div class="w-full h-4 bg-gray-200 rounded relative">
-            <div class="h-full bg-red-600 rounded" style="width: 90%"></div>
+            <div class="h-full bg-green-600 rounded" style="width: 90%"></div>
             <div class="absolute inset-0 flex items-center justify-center text-white text-sm font-semibold">
                 đá bán 3
             </div>
