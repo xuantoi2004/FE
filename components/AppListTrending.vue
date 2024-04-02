@@ -5,7 +5,7 @@
         <div class="p-2 ml-4 uppercase text-sm">Bộ sưu tập mùa hè</div>
     </div> -->
     <div class="flex flex-col w-5/6 mx-auto">
-        <div class="flex flex-wrap">
+        <div class="flex flex-wrap gap-2">
             <div class="w-1/5 p-4 flex flex-col justify-between border rounded hover:shadow-md" v-for="product in products.result" :id="product.id">
                 <ItemTrending :product="product" />
             </div>

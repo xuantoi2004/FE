@@ -5,7 +5,7 @@
             <div class="uppercase">{{ route.name || 'Danh mục' }}</div>
         </div>
         <ul class="flex flex-col gap-4 py-0.5">
-            <li class="flex uppercase text-sm items-center" :class="item.active ? 'bg-amber-400 text-white p-1.5 rounded-md font-semibold shadow-lg' : 'text-gray-500'" v-for="item in route.data">
+            <li class="flex uppercase text-sm items-center" :class="item.active ? 'bg-green-400 text-white p-1.5 rounded-md font-semibold shadow-lg' : 'text-gray-500'" v-for="item in route.data">
                 <IconMenuTest class="scale-75"/>
                 <div class="ml-2">
                     <NuxtLink :to="item.url">{{ item.name }}</NuxtLink>

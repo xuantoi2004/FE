@@ -66,7 +66,7 @@
                                 </div>
                             </div>
                             <button @click="checkout"
-                                class="mt-3 bg-green-700 py-2 px-4 rounded-lg text-white text-center font-semibold text-xl hover:bg-red-500">
+                                class="mt-3 bg-green-700 py-2 px-4 rounded-lg text-white text-center font-semibold text-xl hover:bg-green-500">
                                 THANH TOÁN
                             </button>
                             <div class="text-green-700 text-sm">(Giảm giá trên web chỉ áp dụng cho bán lẻ)</div>

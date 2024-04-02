@@ -6,7 +6,7 @@
         <div class="flex flex-col w-2/3 p-2">
             <NuxtLink class="text-lg font-semibold" :to="'/detail_product/' + product.id">{{ product.name }}</NuxtLink>
             <div class="flex items-center">
-                <div class="font-semibold text-red-600 mr-2 w-2/3">
+                <div class="font-semibold text-orange-500 mr-2 w-2/3">
                     {{ product.price.toLocaleString() }} đ
                 </div>
                 <div class="bg-green-600 text-white py-0.5 px-1 rounded-md">-{{ product.discount }}%</div>

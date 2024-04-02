@@ -7,7 +7,7 @@
             </div>
         </div>
         <div class="w-1/5 flex items-center">
-            <div class="bg-amber-400 text-white rounded-lg p-1 text-xs ml-auto">New</div>
+            <div class="bg-green-400 text-white rounded-lg p-1 text-xs ml-auto">New</div>
         </div>
     </NuxtLink>
     <AdminLeftBarHeadMenuItem />

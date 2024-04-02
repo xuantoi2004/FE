@@ -15,7 +15,7 @@
                     <IconLanguage class="cursor-pointer" />
                     <IconNight class="cursor-pointer" />
                     <IconBell class="cursor-pointer" />
-                    <div class="rounded-full bg-rose-500 p-1.5 text-white">
+                    <div class="rounded-full bg-green-500 p-1.5 text-white">
                         <NuxtLink to="/profile">{{ userStore.user.full_name }}</NuxtLink>
                     </div>
                 </div>

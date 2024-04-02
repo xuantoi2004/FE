@@ -121,7 +121,7 @@
                 </div>
             </div>
             <button @click="updateUser"
-                class="text-center w-2/6 bg-red-700 rounded-lg Px-4 py-2 text-white mx-auto mt-4 uppercase text-sm hover:bg-red-500">
+                class="text-center w-2/6 bg-green-700 rounded-lg Px-4 py-2 text-white mx-auto mt-4 uppercase text-sm hover:bg-green-500">
                 Cập nhật
             </button>
         </div>

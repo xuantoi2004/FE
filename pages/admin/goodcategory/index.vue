@@ -100,7 +100,7 @@ const config = useRuntimeConfig();
 const goodCate = ref({
     good_name: '',
     description: '',
-    picture: 'https://i.imgur.com/9qEXutu.png',
+    picture: '/img/default.jpg',
 })
 
 const {data: categories} = await useFetch('/category',{

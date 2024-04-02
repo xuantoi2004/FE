@@ -11,8 +11,8 @@
         </div>
     </div>
     <div class="flex flex-col w-5/6 mx-auto">
-        <ul class="flex">
-            <li class="w-1/5 p-5 flex flex-col border rounded hover:shadow-md" v-for="product in products.result" :id="product.id">
+        <ul class="flex gap-2">
+            <li class="w-1/5 p-5 flex flex-col border rounded hover:shadow-md justify-between" v-for="product in products.result" :id="product.id">
                 <ItemFlashSale :product="product" />
             </li>
         </ul>

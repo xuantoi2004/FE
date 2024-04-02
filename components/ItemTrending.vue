@@ -14,7 +14,7 @@
         <NuxtLink :to="'/detail_product/' + product.id" class="text-lg font-semibold">{{ product.name }}</NuxtLink>
     </div>
     <div class="flex flex-row justify-between">
-        <div class="text-red-600 font-bold">
+        <div class="text-orange-500 font-bold">
             {{ product.price.toLocaleString() }} đ
         </div>
         <!-- <div class="bg-gray-400 text-white rounded-lg px-3">Tập 1</div> -->

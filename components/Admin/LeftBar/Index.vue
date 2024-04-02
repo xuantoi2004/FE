@@ -4,9 +4,7 @@
         <div class="flex items-center sticky top-0 pt-5 pb-2 px-5 z-50 bg-admin">
             <div class="w-3/5">
                 <NuxtLink to="/">
-                    <!-- <img src="/img/logo.png" /> -->
-                    <div class="text-gray-800 font-bold text-xl text-center"><img src="/img/logo_kingshoes.png" /> </div>
-
+                    <img src="/img/logo.png" />
                 </NuxtLink>
             </div>
             <IconCollapseLeft class="w-1/5 max-h-6 ml-auto" />
@@ -33,7 +31,7 @@ let dataRoute = ref([
         ]
     },
     {
-        name: 'Ngành hàng',
+        name: 'Mặt hàng',
         data: [
             {
                 url: '/admin/goodcategory',
