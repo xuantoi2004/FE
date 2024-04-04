@@ -65,7 +65,7 @@
               <div class="uppercase font-semibold text-sm">{{ userStore.user.full_name }}</div>
             </div>
             <div v-if="!userStore.user.isLoggin"
-              class="flex flex-col absolute bg-white top-full right-0 px-4 py-2 w-60 rounded shadow-sm border"
+              class="flex flex-col absolute bg-white top-full right-0 px-4 py-2 w-60 rounded shadow-sm border z-50"
               :class="{ hidden: isHoveringAccount }">
               <button class="bg-gray-800 text-white px-4 py-2 my-2 rounded-lg text-center font-semibold"
                 @click="displayLoginBox">Đăng nhập</button>
@@ -178,7 +178,7 @@
           @click="isDisplayLoginBox = false">Bỏ
           qua</button>
         <div class="text-center text-xs mt-4">
-          Bằng việc đăng ký, bạn đã đồng ý với HuyHang.com về <br>
+          Bằng việc đăng ký, bạn đã đồng ý với Fuji về <br>
           <NuxtLink to="#" class="text-blue-500">Điều khoản dịch vụ</NuxtLink> & <NuxtLink to="#" class="text-blue-500">
             Chính sách bảo mật</NuxtLink>
         </div>

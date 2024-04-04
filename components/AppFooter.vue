@@ -1,5 +1,5 @@
 <template>
-    <div class="footer-fj"></div>
+    <div class="footer-fj mt-5"></div>
     <div class="bg-green-600 py-5 px-4 text-white">
         <div class="flex w-5/6 mx-auto">
             <div class="w-1/3">

@@ -72,7 +72,7 @@
           class="px-4 py-2 text-red-700 bg-white border-red-700 border-2 font-semibold text-center w-3/5 rounded-md mx-auto mb-3" @click="isDisplayLoginBox = false">Bỏ
           qua</button>
         <div class="text-center text-xs mt-4">
-          Bằng việc đăng ký, bạn đã đồng ý với HuyHang.com về <br>
+          Bằng việc đăng ký, bạn đã đồng ý với Fuji về <br>
           <NuxtLink to="#" class="text-blue-500">Điều khoản dịch vụ</NuxtLink> & <NuxtLink to="#" class="text-blue-500">
             Chính sách bảo mật</NuxtLink>
         </div>

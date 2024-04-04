@@ -2,13 +2,13 @@
     <div class="flex gap-x-5">
         <div class="flex flex-col bg-white shadow-lg w-5/6 py-5 gap-y-5 rounded-lg">
             <div class="flex justify-between text-gray-700 font-semibold px-4">
-                <div class="text-gray-800 text-2xl font-bold">HUYHANG</div>
+                <div class="text-gray-800 text-2xl font-bold">Fuji</div>
                 <div>HÓA ĐƠN #1998</div>
             </div>
             <div class="flex px-4 justify-between text-gray-500 border-b pb-4">
                 <div class="flex flex-col">
                     <div>Đồng Quang, Thái Nguyên, Việt Nam</div>
-                    <div>Nhà sách Huy Hằng</div>
+                    <div>Hoa quả sạch Fuji</div>
                     <div>0987196811</div>
                 </div>
                 <div class="flex flex-col text-right">
