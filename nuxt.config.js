@@ -13,6 +13,14 @@ export default defineNuxtConfig({
     },
   },
   devtools: { enabled: true },
+  vite: {
+    vue: {
+      script: {
+        defineModel: true,
+        propsDestructure: true
+      }
+    }
+  },
   modules: [
     '@pinia/nuxt',
     '@pinia-plugin-persistedstate/nuxt',
