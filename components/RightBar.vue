@@ -1,6 +1,6 @@
 <template>
     <div>
-        <button v-if="!showForm" title="Tìm kiếm mẫu giày ưng ý!"
+        <button v-if="!showForm" title="Tìm kiếm trái cây bằng hình ảnh!"
             class="fixed right-0 bottom-20 z-50 p-4 bg-green-400 rounded-full shadow-lg hover:bg-green-600 transition-all duration-300"
             @click="showForm = true">
             <IconSearchDocument />
