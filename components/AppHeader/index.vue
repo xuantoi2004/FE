@@ -191,9 +191,9 @@
       <NuxtLink to="/" class="bg-green-600 rounded-full px-3 py-2 text-white font-bold capitalize">
         Home
       </NuxtLink>
-      <div class="hover:bg-green-600 hover:rounded-full px-3 py-2 hover:text-white font-bold capitalize duration-100">
+      <NuxtLink to="/product" class="hover:bg-green-600 hover:rounded-full px-3 py-2 hover:text-white font-bold capitalize duration-100">
         Sản phẩm
-      </div>
+      </NuxtLink>
       <div class="hover:bg-green-600 hover:rounded-full px-3 py-2 hover:text-white font-bold capitalize duration-100">
         Thanh toán
       </div>

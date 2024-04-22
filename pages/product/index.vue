@@ -4,17 +4,19 @@
             <div class="flex my-3 text-sm items-center gap-x-3">
                 <NuxtLink to="/" class="uppercase flex items-center gap-x-2">
                     <IconHome /> Trang Chủ
-                </NuxtLink> &rArr; SẢN PHẨM NỔI BẬT
-            </div>
-            <div class="bg-white flex p-4 border-b border-gray-300">
-                <div class="p-2 uppercase text-sm text-amber-400 border border-amber-400 rounded-lg font-semibold ">Sản
-                    phẩm bán
-                    chạy</div>
-                <div class="p-2 ml-4 uppercase text-sm">Giảm sốc</div>
-                <div class="p-2 ml-4 uppercase text-sm">Sản phẩm mùa hè</div>
+                </NuxtLink> &rArr; <span class="uppercase">Tất cả sản phẩm</span>
             </div>
             <div class="flex">
-                <div class="w-full bg-white flex flex-col p-4 shadow-sm">
+                <div class="w-2/12 bg-white p-4 shadow-sm">
+                    <div class="border-b border-gray-300 flex flex-col pb-2">
+                        <div class="font-bold text-sm uppercase">Danh mục</div>
+                        <div class="p-2" v-for="goodCate in goodCates.result">
+                            <NuxtLink :to="`/good_cate/${goodCate.id}`">{{ goodCate.goodName }}</NuxtLink>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="w-10/12 bg-white flex flex-col ml-2 p-4 shadow-sm">
                     <div class="border-b border-gray-300 pb-4 mb-2 px-2">
                         Sắp xếp theo:
                         <select name="" id="" class="border rounded-lg px-5 py-2 mr-2">
@@ -28,28 +30,26 @@
                             </option>
                         </select>
                     </div>
-                    <div class="flex bg-white flex-col">
-                        <div class="flex flex-wrap">
-                            <div class="w-1/5 p-4 flex flex-col justify-between hover:shadow-md"
-                                v-for="product in products.result" :id="product.id">
-                                <ItemTrending :product="product" />
-                            </div>
+                    <div class="flex flex-wrap">
+                        <div class="w-1/4 flex flex-col" v-for="product in products.result" :id="product.id">
+                            <ItemTrending :product="product" :isFlashSale="false" />
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+
 </template>
 <script setup>
 const config = useRuntimeConfig();
-
 const { data: products } = await useFetch('/products', {
     baseURL: config.public.apiBase,
-    method: 'GET',
-    query: {
-        trending: true,
-        limit: 24
-    }
+    method: 'GET'
+})
+
+const { data: goodCates } = await useFetch('/goods-category', {
+    baseURL: config.public.apiBase,
+    method: 'GET'
 })
 </script>
