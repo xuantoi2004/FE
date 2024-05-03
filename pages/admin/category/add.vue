@@ -25,11 +25,7 @@
             </div>
 
             <div class="flex flex-col gap-y-3 w-1/2">
-                <div class="flex items-center">
-                    <div class="w-1/3 text-gray-600 font-semibold after:content-[':'] text-sm uppercase">Ảnh đại diện</div>
-                    <input type="text" v-model="category.picture" placeholder="nhập link ảnh..."
-                        class="w-2/3 px-2 py-2.5 border-gray-300 rounded-lg border outline-none placeholder:uppercase bg-admin placeholder:text-xs text-gray-500 focus:border-red-500">
-                </div>
+                <FormUploadImage v-model:src-image="category.picture" />
                 <div class="flex items-center">
                     <div class="w-1/3 text-gray-600 font-semibold after:content-[':'] text-sm uppercase">Trạng thái</div>
                     <select placeholder="nhập đường dẫn..."

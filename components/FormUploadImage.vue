@@ -1,8 +1,12 @@
 <template>
     <div class="flex items-center">
-        <div class="w-1/3 text-gray-600 font-semibold after:content-[':'] uppercase text-sm">Ảnh mô
+        <div class="w-1/3 text-gray-600 font-semibold after:content-[':'] uppercase text-sm" :class="{
+            'hidden': isHideCaption
+        }">Ảnh mô
             tả</div>
-        <div class="w-2/3 flex flex-col">
+        <div class="w-2/3 flex flex-col" :class="{
+            'w-full': isHideCaption
+        }">
             <div class="py-2 gap-1 flex items-center">
                 <img :src="srcImage" class="w-2/3">
                 <div class="flex flex-col w-1/3 gap-2">
@@ -21,6 +25,12 @@
 </template>
 <script setup>
 const srcImage = defineModel('srcImage');
+const props = defineProps({
+    isHideCaption: {
+        type: Boolean,
+        default: false
+    }
+});
 const config = useRuntimeConfig();
 const onFileChange = async (e) => {
     // Lấy file được chọn

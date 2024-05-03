@@ -70,11 +70,7 @@
                         <tr class="text-gray-600">
                             <td class="border p-3 w-1/3" id="avatar">Ảnh đại diện</td>
                             <td class="border p-3 w-2/3">
-                                <div class="flex items-center gap-x-3">
-                                    <img :src="product.result.picture" class="w-1/4" alt="">
-                                    <input type="text" v-model="product.result.picture" placeholder="nhập link ảnh đại diện"
-                                        class="h-fit w-3/4 px-2 py-2.5 text-gray-500 border-gray-300 rounded-lg border outline-none  bg-admin placeholder:lowercase focus:border-red-500">
-                                </div>
+                                <FormUploadImage :is-hide-caption="true" v-model:src-image="product.result.picture" />
                             </td>
                         </tr>
                         <tr class="text-gray-600">

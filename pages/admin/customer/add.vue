@@ -24,11 +24,7 @@
                     <input type="text" placeholder="nhập email" v-model="customer.email"
                         class="w-2/3 px-2 py-2.5 border-gray-300 rounded-lg border outline-none text-gray-500 bg-admin  focus:border-red-500">
                 </div>
-                <div class="flex items-center">
-                    <div class="w-1/3 text-gray-600 font-semibold after:content-[':'] text-sm uppercase">Ảnh đại diện</div>
-                    <input type="text" placeholder="nhập link ảnh" v-model="customer.avatar"
-                        class="w-2/3 px-2 py-2.5 border-gray-300 rounded-lg border outline-none text-gray-500 bg-admin  focus:border-red-500">
-                </div>
+                <FormUploadImage v-model:src-image="customer.avatar" />
                 <div class="flex items-center">
                     <div class="w-1/3 text-gray-600 font-semibold after:content-[':'] text-sm uppercase">Chọn giới tính
                     </div>

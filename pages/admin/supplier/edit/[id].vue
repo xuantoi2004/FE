@@ -51,11 +51,7 @@
                     <input type="text" v-model="supplier.url" placeholder="nhập đường dẫn tới trang web"
                         class="w-2/3 px-2 py-2.5 border-gray-300 rounded-lg text-gray-500 border outline-none  bg-admin placeholder:lowercase focus:border-red-500">
                 </div>
-                <div class="flex items-center">
-                    <div class="w-1/3 text-gray-500 after:content-[':'] after:ml-1.5">Logo</div>
-                    <input type="text" v-model="supplier.logo" placeholder="nhập url logo"
-                        class="w-2/3 px-2 py-2.5 border-gray-300 rounded-lg text-gray-500 border outline-none  bg-admin placeholder:lowercase focus:border-red-500">
-                </div>
+                <FormUploadImage v-model:src-image="supplier.logo" />
                 <div class="flex items-center">
                     <div class="w-1/3 text-gray-500 after:content-[':'] after:ml-1.5">Xếp hạng</div>
                     <input type="number" min="1" v-model="supplier.ranking" placeholder="nhập số thứ tự trên index"
